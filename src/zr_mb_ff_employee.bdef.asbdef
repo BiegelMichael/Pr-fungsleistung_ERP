@@ -1,0 +1,73 @@
+managed implementation in class zbp_r_mb_ff_employee unique;
+strict ( 2 );
+
+define behavior for ZR_MB_FF_EMPLOYEE alias Employee
+persistent table zmbff_employee
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  association _VacationRequests { create; }
+  association _VacEnt {create;}
+  field ( readonly, numbering : managed ) EmployeeUuid;
+
+  mapping for zmbff_employee corresponding
+    {
+      EmployeeUuid  = employee_uuid;
+      EmployeeId    = employee_id;
+      FirstName     = first_name;
+      Surname       = surname;
+      EntryDate     = entry_date;
+      createdBy     = created_by;
+      createdAt     = created_at;
+      lastChanged   = last_changed_by;
+      lastChangedAt = last_changed_at;
+    }
+}
+
+define behavior for ZR_MBFF_VACATIONREQUEST alias VacationRequest
+persistent table zmbff_vacationrq
+lock dependent by _Employee
+authorization dependent by _Employee
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly, numbering : managed ) VacationreqUuid;
+  field ( readonly ) Applicant;
+  association _Employee;
+
+  mapping for zmbff_vacationrq corresponding
+    {
+      VacationreqUuid = vacationreq_uuid;
+      Applicant       = applicant;
+      Approver        = approver;
+      StartDate       = start_date;
+      EndDate         = end_date;
+      CommentVreq     = comment_vreq;
+      Status          = status;
+    }
+}
+
+define behavior for ZR_MB_FF_VACENT alias VacationEntitlement
+persistent table zmbff_vacent
+lock dependent by _Employee
+authorization dependent by _Employee
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly, numbering : managed ) VacationUuid;
+  field ( readonly ) Employee;
+  association _Employee;
+
+  mapping for zmbff_vacent corresponding
+    {
+      VacationUuid = vacation_uuid;
+      VacationDays = vacation_days;
+      VacYear      = vac_year;
+    }
+}

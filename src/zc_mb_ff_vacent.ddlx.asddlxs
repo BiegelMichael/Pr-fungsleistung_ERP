@@ -1,0 +1,50 @@
+@Metadata.layer: #CUSTOMER
+@UI.headerInfo: // bezieht sich auf alles
+{
+typeNamePlural: 'VacationEntitlements',
+title.value: '_Employee.Surname'
+}
+annotate view ZC_MB_FF_VACENT
+    with 
+{
+   @UI.facet:
+  [
+    { position: 10, targetQualifier: 'EntitlementInfos', label: 'Entitlement Informationen', type: #FIELDGROUP_REFERENCE },
+    { position: 20, targetQualifier: 'AdminData', label: 'Administrative Data', type: #FIELDGROUP_REFERENCE }
+   
+    ]
+    
+  @UI.fieldGroup: [{ position : 10, qualifier: 'AdminData' }]
+  VacationUuid;
+    
+  @UI.lineItem: [{ position: 10 }]
+  @UI.selectionField: [{ position: 10 }]
+  @UI.fieldGroup: [{ position : 10, qualifier: 'EntitlementInfos' }]
+  Employee;
+  
+  @UI.lineItem: [{ position: 20 }]
+  @UI.selectionField: [{ position: 20 }]
+  @UI.fieldGroup: [{ position : 20, qualifier: 'EntitlementInfos' }]
+  VacationDays;
+  
+  @UI.lineItem: [{ position: 30 }]
+  @UI.selectionField: [{ position: 30 }]
+  @UI.fieldGroup: [{ position : 30, qualifier: 'EntitlementInfos' }]
+  VacYear;
+  
+   @UI.fieldGroup: [{ position : 20, qualifier: 'AdminData' }]
+  createdBy;
+
+  @UI.fieldGroup: [{ position : 30, qualifier: 'AdminData' }]
+  createdAt;
+
+  @UI.fieldGroup: [{ position : 40, qualifier: 'AdminData' }]
+  lastChangedBy;
+
+
+  @UI.fieldGroup: [{ position : 50, qualifier: 'AdminData' }]
+  lastChangedAt;
+  
+  
+  
+}

@@ -1,0 +1,65 @@
+@Metadata.layer: #CUSTOMER
+@UI.headerInfo: // bezieht sich auf alles
+{
+typeNamePlural: 'VacationRequests',
+title.value: '_Employee.Surname'
+}
+annotate view ZC_MB_FF_VACATIONREQUEST with
+{
+  /* Facets */
+  @UI.facet:
+  [
+    { position: 10, targetQualifier: 'RequestDetails', label: 'Request Details', type: #FIELDGROUP_REFERENCE },
+    { position: 20, targetQualifier: 'AdminData', label: 'Administrative Data', type: #FIELDGROUP_REFERENCE }
+   
+    ]
+  /* Fields */
+  @UI.fieldGroup: [{ position : 10, qualifier: 'AdminData' }]
+  VacationreqUuid;
+
+  @UI.lineItem: [{ position: 10 }]
+  @UI.selectionField: [{ position: 10 }]
+  @UI.fieldGroup: [{ position : 10, qualifier: 'RequestDetails' }]
+  Applicant;
+
+  @UI.lineItem: [{ position: 20 }]
+  @UI.selectionField: [{ position: 20 }]
+  @UI.fieldGroup: [{ position : 20, qualifier: 'RequestDetails' }]
+  Approver;
+
+  @UI.lineItem: [{ position: 30 }]
+  @UI.selectionField: [{ position: 30 }]
+  @UI.fieldGroup: [{ position : 30, qualifier: 'RequestDetails' }]
+  StartDate;
+
+  @UI.lineItem: [{ position: 40 }]
+  @UI.selectionField: [{ position: 40 }]
+  @UI.fieldGroup: [{ position : 40, qualifier: 'RequestDetails' }]
+  EndDate;
+
+  @UI.lineItem: [{ position: 50 }]
+  @UI.selectionField: [{ position: 50 }]
+  @UI.fieldGroup: [{ position : 50, qualifier: 'RequestDetails' }]
+  CommentVreq;
+
+  @UI.lineItem: [{ position: 60 }]
+  @UI.selectionField: [{ position: 60 }]
+  @UI.fieldGroup: [{ position : 60, qualifier: 'RequestDetails' }]
+  Status;
+
+  @UI.fieldGroup: [{ position : 20, qualifier: 'AdminData' }]
+  createdBy;
+
+  @UI.fieldGroup: [{ position : 30, qualifier: 'AdminData' }]
+  createdAt;
+
+  @UI.fieldGroup: [{ position : 40, qualifier: 'AdminData' }]
+  lastChangedBy;
+
+
+
+  @UI.fieldGroup: [{ position : 50, qualifier: 'AdminData' }]
+  lastChangedAt;
+
+
+}

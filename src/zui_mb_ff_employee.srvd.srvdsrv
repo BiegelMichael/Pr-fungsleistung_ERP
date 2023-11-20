@@ -1,0 +1,6 @@
+@EndUserText.label: 'EMPLOYEE'
+define service ZUI_MB_FF_EMPLOYEE {
+  expose ZC_MB_FF_EMPLOYEE        as Employee;
+  expose ZC_MB_FF_VACATIONREQUEST as VacationRequest;
+  expose ZC_MB_FF_VACENT          as VacationEntitlement;
+}
