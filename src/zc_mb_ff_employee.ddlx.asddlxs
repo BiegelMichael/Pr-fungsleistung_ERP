@@ -51,6 +51,28 @@ Surname;
 @UI.fieldGroup: [{ position : 40, qualifier: 'EmployeeDetails' }]
 EntryDate;
 
+@EndUserText: { label: 'Available Vacation Days', quickInfo: 'Availavle Vacation Days'}
+  @UI.lineItem: [{ position: 50, criticality: 'AvailableVDaysCriticality', criticalityRepresentation: #WITHOUT_ICON }]
+  @UI.dataPoint: { description: 'Available Vacation Days', title: 'Available Vacation Days', targetValueElement: 'AvailableVacationDays', criticality: 'AvailableVDaysCriticality' }
+  AvailableVacationDays;
+  @EndUserText: { label: 'Consumed Vacation Days', quickInfo: 'Consumed Vacation Days'}
+  @UI.lineItem: [{ position: 60, criticality: 'ConsumedVDaysCriticality', criticalityRepresentation: #WITHOUT_ICON }]
+  @UI.dataPoint: { description: 'Consumed Vacation Days', title: 'Consumed Vacation Days', targetValueElement: 'ConsumedVacationDays', criticality: 'ConsumedVDaysCriticality'}
+  ConsumedVacationDays;
+  @EndUserText: { label: 'Planned Vacation Days', quickInfo: 'Planned Vacation Days'}
+  @UI.lineItem: [{ position: 70, criticality: 'PlannedVDaysCriticality', criticalityRepresentation: #WITHOUT_ICON }]
+  @UI.dataPoint: { description: 'Available Vacation Days', title: 'Planned Vacation Days', targetValueElement: 'PlannedVacationDays', criticality: 'PlannedVDaysCriticality'}
+  PlannedVacationDays;
+
+  @UI.hidden: true
+  AvailableVDaysCriticality;
+
+  @UI.hidden: true
+  ConsumedVDaysCriticality;
+
+  @UI.hidden: true
+  PlannedVDaysCriticality;
+
 
     
 }

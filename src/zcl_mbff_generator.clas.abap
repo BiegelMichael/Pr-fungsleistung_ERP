@@ -47,13 +47,8 @@ CLASS zcl_mbff_generator IMPLEMENTATION.
     DELETE FROM zmbff_vacationrq.
     DELETE FROM zmbff_vacent.
 
-
-    "Mitarbeiter anlegen:
-
-    "Mitarbeiter Hans anlegen:
+*   Mitarbeiter Hans anlegen:
     employee-client = sy-mandt.
-*    employee-employee_uuid = cl_system_uuid=>create_uuid_x16_static( ).
-*    employee-employee_uuid = hans_uuid.
     Hans_uuid = cl_system_uuid=>create_uuid_x16_static( ).
     employee-employee_uuid = Hans_uuid.
     employee-employee_id = '1'.
@@ -67,13 +62,14 @@ CLASS zcl_mbff_generator IMPLEMENTATION.
 
     APPEND employee TO employees.
 
-*Urlaubsantrag Pegg anlegen
+*   Urlaubsantrag Hans anlegen
     vacationrequest-client = sy-mandt.
     vacationrequest-vacationreq_uuid = cl_system_uuid=>create_uuid_x16_static( ).
     vacationrequest-approver = Hans_uuid.
-    vacationrequest-start_date = '20231212'.
-    vacationrequest-end_date = '20240101'.
-    vacationrequest-comment_vreq = '1.Hans Gregory'.
+    vacationrequest-start_date = '20231220'.
+    vacationrequest-end_date = '20231229'.
+    vacationrequest-vacation_days = 10.
+    vacationrequest-comment_vreq = '1. Antrag Hans'.
     vacationrequest-status = 'B'.
     GET TIME STAMP FIELD vacationrequest-created_at.
     vacationrequest-created_by = 'GENERATOR'.
@@ -82,26 +78,13 @@ CLASS zcl_mbff_generator IMPLEMENTATION.
     vacationrequest-applicant = employee-employee_uuid.
     APPEND VacationRequest TO VacationRequests.
 
-*vacationrequest-client = sy-mandt.
-*vacationrequest-vacationreq_uuid = cl_system_uuid=>create_uuid_x16_static( ).
-*"vacationrequest-applicant = '1'.
-*vacationrequest-approver = '3'.
-*vacationrequest-start_date = '20240202'.
-*vacationrequest-end_date = '20240303'.
-*vacationrequest-comment_vreq = '2.Antrag Gregory'.
-*vacationrequest-status = 'B'.
-*GET TIME STAMP FIELD vacationrequest-created_at.
-*vacationrequest-created_by = 'GENERATOR'.
-*GET TIME STAMP FIELD vacationrequest-last_changed_at.
-*vacationrequest-last_changed_by = 'GENERATOR'.
-*vacationrequest-applicant = employee-employee_uuid.
-*APPEND VacationRequest TO vacationRequests.
 
-*"Anspruch Pegg anlegen
-*
+
+*   Anspruch Hans anlegen
+
     vacationentitlement-client = sy-mandt.
     vacationentitlement-vacation_uuid = cl_system_uuid=>create_uuid_x16_static( ).
-    vacationentitlement-employee = employee-employee_uuid.
+    vacationentitlement-employee = hans_uuid.
     vacationentitlement-vacation_days = '30'.
     vacationentitlement-vac_year = '2024'.
     GET TIME STAMP FIELD vacationentitlement-created_at.
@@ -110,10 +93,9 @@ CLASS zcl_mbff_generator IMPLEMENTATION.
     vacationentitlement-last_changed_by = 'GENERATOR'.
 
     APPEND VacationEntitlement TO VacationEntitlements.
-**
 
 
-    "Anlegen Hans
+*   Anlegen Max
 
     employee-client = sy-mandt.
     Max_uuid = cl_system_uuid=>create_uuid_x16_static( ).
@@ -128,25 +110,39 @@ CLASS zcl_mbff_generator IMPLEMENTATION.
     employee-last_changed_by = 'GENERATOR'.
 
     APPEND employee TO employees.
-    out->write( sy-dbcnt ).
-
 
 
     vacationrequest-client = sy-mandt.
     vacationrequest-vacationreq_uuid = cl_system_uuid=>create_uuid_x16_static( ).
     vacationrequest-approver = Hans_uuid.
     vacationrequest-start_date = '20240204'.
-    vacationrequest-end_date = '20240505'.
+    vacationrequest-end_date = '202402010'.
+    vacationrequest-vacation_days = 7.
     vacationrequest-comment_vreq = '1.Antrag Max'.
     vacationrequest-status = 'B'.
     GET TIME STAMP FIELD vacationrequest-created_at.
     vacationrequest-created_by = 'GENERATOR'.
     GET TIME STAMP FIELD vacationrequest-last_changed_at.
     vacationrequest-last_changed_by = 'GENERATOR'.
-    vacationrequest-applicant = employee-employee_uuid.
+    vacationrequest-applicant = max_uuid.
     APPEND VacationRequest TO vacationRequests.
+
+
+    vacationentitlement-client = sy-mandt.
+    vacationentitlement-vacation_uuid = cl_system_uuid=>create_uuid_x16_static( ).
+    vacationentitlement-employee = max_uuid.
+    vacationentitlement-vacation_days = '30'.
+    vacationentitlement-vac_year = '2024'.
+    GET TIME STAMP FIELD vacationentitlement-created_at.
+    vacationentitlement-created_by = 'GENERATOR'.
+    GET TIME STAMP FIELD vacationentitlement-last_changed_at.
+    vacationentitlement-last_changed_by = 'GENERATOR'.
+
+    APPEND VacationEntitlement TO VacationEntitlements.
+
     out->write( sy-dbcnt ).
     out->write( 'Anlegen beendet' ).
+
 
     INSERT zmbff_employee FROM TABLE @Employees.
     INSERT zmbff_vacationrq FROM TABLE @VacationRequests.

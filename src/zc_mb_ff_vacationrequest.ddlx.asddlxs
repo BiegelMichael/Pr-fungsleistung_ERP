@@ -27,9 +27,9 @@ annotate view ZC_MB_FF_VACATIONREQUEST with
   @UI.fieldGroup: [{ position : 20, qualifier: 'RequestDetails' }]
   Approver;
 
-  @UI.lineItem: [{ position: 30 }]
+  @UI.lineItem: [{ position: 30, criticality: 'BeginDateCriticality' }]
   @UI.selectionField: [{ position: 30 }]
-  @UI.fieldGroup: [{ position : 30, qualifier: 'RequestDetails' }]
+  @UI.fieldGroup: [{ position : 30, criticality: 'BeginDateCriticality',qualifier: 'RequestDetails' }]
   StartDate;
 
   @UI.lineItem: [{ position: 40 }]
@@ -46,6 +46,11 @@ annotate view ZC_MB_FF_VACATIONREQUEST with
   @UI.selectionField: [{ position: 60 }]
   @UI.fieldGroup: [{ position : 60, qualifier: 'RequestDetails' }]
   Status;
+  
+  @UI.lineItem: [{ position: 70 }]
+  @UI.selectionField: [{ position: 70 }]
+  @UI.fieldGroup: [{ position : 70, qualifier: 'RequestDetails' }]
+  VacationDays;
 
   @UI.fieldGroup: [{ position : 20, qualifier: 'AdminData' }]
   createdBy;

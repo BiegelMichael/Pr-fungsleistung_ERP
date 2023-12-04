@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Definition for App 2'
+define service ZUI_MB_FF_VACREQ_APPROVER {
+  expose ZC_MB_FF_VACREQAPPROVER;
+}

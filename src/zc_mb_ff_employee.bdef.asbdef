@@ -7,16 +7,18 @@ define behavior for ZC_MB_FF_EMPLOYEE //alias <alias_name>
   use update;
   use delete;
 
-  use association _VacationRequests { create; }
+  use association _VacationRequests {create;}
   use association _VacEnt{create;}
   }
 
 define behavior for ZC_MB_FF_VACATIONREQUEST //alias <alias_name>
 {
+
   use update;
   use delete;
 
   use association _Employee;
+  use association _Approver;
 }
 
 define behavior for ZC_MB_FF_VACENT //alias <alias_name>

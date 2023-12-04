@@ -1,0 +1,14 @@
+projection;
+strict ( 2 );
+
+define behavior for ZC_MB_FF_EMPLOYEEAPPROVER //alias <alias_name>
+{
+  use association _VacationRequests;
+}
+
+define behavior for ZC_MB_FF_VACREQAPPROVER //alias <alias_name>
+{
+
+  use association _Approver;
+  use association _Employee;
+}

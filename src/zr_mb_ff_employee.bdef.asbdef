@@ -10,9 +10,17 @@ authorization master ( instance )
   create;
   update;
   delete;
+
   association _VacationRequests { create; }
-  association _VacEnt {create;}
+  association _VacEnt { create; }
+
   field ( readonly, numbering : managed ) EmployeeUuid;
+  field ( readonly ) EmployeeId;
+  field ( mandatory : create ) Surname, FirstName, EntryDate;
+  field ( readonly : update ) EntryDate;
+
+  field ( readonly ) CreatedAt, CreatedBy, LastChangedAt, lastChanged;
+
 
   mapping for zmbff_employee corresponding
     {
@@ -36,9 +44,23 @@ authorization dependent by _Employee
 {
   update;
   delete;
-  field ( readonly, numbering : managed ) VacationreqUuid;
-  field ( readonly ) Applicant;
+
   association _Employee;
+  association _Approver;
+
+  /* Aktions */
+
+  /* Validations */
+
+  /* Determinations */
+
+  field ( readonly, numbering : managed ) VacationreqUuid;
+  field ( readonly ) Applicant, Status, VacationDays;
+  field ( mandatory : create ) Approver, StartDate, EndDate;
+  field ( readonly : update ) Approver, StartDate, EndDate;
+
+  // Admin Data
+  field ( readonly ) CreatedAt, CreatedBy, LastChangedAt, LastChangedBy;
 
   mapping for zmbff_vacationrq corresponding
     {
@@ -49,6 +71,10 @@ authorization dependent by _Employee
       EndDate         = end_date;
       CommentVreq     = comment_vreq;
       Status          = status;
+      CreatedBy       = created_by;
+      CreatedAt       = created_at;
+      LastChangedBy   = last_changed_by;
+      LastChangedAt   = last_changed_at;
     }
 }
 
@@ -60,9 +86,16 @@ authorization dependent by _Employee
 {
   update;
   delete;
+
+  association _Employee;
+
   field ( readonly, numbering : managed ) VacationUuid;
   field ( readonly ) Employee;
-  association _Employee;
+  field ( readonly : update ) VacYear;
+
+  // Admin Data
+  field ( readonly ) CreatedAt, CreatedBy, LastChangedAt, LastChangedBy;
+
 
   mapping for zmbff_vacent corresponding
     {

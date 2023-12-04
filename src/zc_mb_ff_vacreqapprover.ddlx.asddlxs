@@ -1,0 +1,57 @@
+@Metadata.layer: #CUSTOMER
+annotate entity ZC_MB_FF_VACREQAPPROVER with
+{
+
+  @UI.facet:
+   [
+     { position: 10, type: #FIELDGROUP_REFERENCE, label: 'Details', targetQualifier: 'details' },
+     { position: 20, type: #FIELDGROUP_REFERENCE, label: 'Administrative Data', targetQualifier: 'admindata' }
+   ]
+  @UI.hidden: true
+  VacationreqUuid;
+
+  @EndUserText: { label: 'Applicant', quickInfo: 'Full Name of Applicant' }
+  @UI.fieldGroup: [{ position: 80, qualifier: 'details' }]
+  @UI.lineItem: [{ position: 5 }]
+  Applicant;
+  @EndUserText: { label: 'Approver', quickInfo: 'Full Name of Approver'}
+  @UI.selectionField: [{ position: 10 }]
+  @UI.lineItem: [{ position: 60 }]
+  @UI.fieldGroup: [{ position: 70, qualifier: 'details' }]
+  Approver;
+  @UI.lineItem: [{ position: 10, criticality: 'BeginDateCriticality', criticalityRepresentation: #WITHOUT_ICON}]
+  @UI.fieldGroup: [{ position: 10, qualifier: 'details' }]
+  StartDate;
+  @UI.lineItem: [{ position: 20 }]
+  @UI.fieldGroup: [{ position: 20, qualifier: 'details' }]
+  EndDate;
+  @UI.lineItem: [{ position: 40 }]
+  @UI.fieldGroup: [{ position: 40, qualifier: 'details' }]
+  CommentVreq;
+  @UI.hidden: true
+
+  Status;
+  @UI.fieldGroup: [{ position: 10, qualifier: 'admindata' }]
+
+  createdBy;
+  @UI.fieldGroup: [{ position: 20, qualifier: 'admindata' }]
+
+  createdAt;
+  @UI.fieldGroup: [{ position: 30, qualifier: 'admindata' }]
+
+  lastChangedBy;
+  @UI.fieldGroup: [{ position: 40, qualifier: 'admindata' }]
+
+  lastChangedAt;
+
+  @UI.hidden: true
+
+  ApproverName;
+  @UI.hidden: true
+
+  StatusText;
+  @UI.hidden: true
+  BeginDateCriticality;
+  /* Associations */
+
+}
