@@ -42,10 +42,14 @@ annotate view ZC_MB_FF_VACATIONREQUEST with
   @UI.fieldGroup: [{ position : 50, qualifier: 'RequestDetails' }]
   CommentVreq;
 
-  @UI.lineItem: [{ position: 60 }]
-  @UI.selectionField: [{ position: 60 }]
-  @UI.fieldGroup: [{ position : 60, qualifier: 'RequestDetails' }]
+  @UI.hidden: true
   Status;
+  
+  @UI.selectionField: [{ position: 60 }]
+  @UI.lineItem: [{ position: 60, criticality: 'StatusCriticality', criticalityRepresentation: #WITH_ICON }]
+  @UI.dataPoint: { description: 'State of Vacation Request', title: 'Status', targetValueElement: 'StatusDescription', criticality: 'StatusCriticality' }
+  @UI.fieldGroup: [{ position: 60, qualifier: 'details' }]
+  StatusDescription;
   
   @UI.lineItem: [{ position: 70 }]
   @UI.selectionField: [{ position: 70 }]
@@ -61,10 +65,13 @@ annotate view ZC_MB_FF_VACATIONREQUEST with
   @UI.fieldGroup: [{ position : 40, qualifier: 'AdminData' }]
   lastChangedBy;
 
-
-
   @UI.fieldGroup: [{ position : 50, qualifier: 'AdminData' }]
   lastChangedAt;
 
+ @UI.hidden: true
+  BeginDateCriticality;
+  
+  @UI.hidden: true
+  StatusCriticality;
 
 }

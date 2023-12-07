@@ -14,6 +14,12 @@ authorization master ( instance )
   association _VacationRequests { create; }
   association _VacEnt { create; }
 
+  /* Aktions */
+  action Refresh result [1] $self;
+
+  /* Determinations */
+  determination DetermineEmployeeNumber on modify { field EntryDate; }
+
   field ( readonly, numbering : managed ) EmployeeUuid;
   field ( readonly ) EmployeeId;
   field ( mandatory : create ) Surname, FirstName, EntryDate;
@@ -49,10 +55,19 @@ authorization dependent by _Employee
   association _Approver;
 
   /* Aktions */
+  /* Aktions */
+  action DeclineVacationRequest result [1] $self;
+  action ApproveLeaveRequest result [1] $self;
 
   /* Validations */
 
+  validation ValidateSufficientVacationDays on save { create; }
+  validation ValidateDates on save { create; }
+
   /* Determinations */
+  determination DetermineVacationDays on modify { create; }
+  determination DetermineState on modify { field Applicant, StartDate, EndDate, CommentVreq; }
+
 
   field ( readonly, numbering : managed ) VacationreqUuid;
   field ( readonly ) Applicant, Status, VacationDays;

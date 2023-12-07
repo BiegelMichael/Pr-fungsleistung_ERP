@@ -1,57 +1,96 @@
 @Metadata.layer: #CUSTOMER
+
+@UI.headerInfo: {
+  typeNamePlural: 'Vacation Requests',
+  title.value: 'CommentVreq'
+}
+@UI.presentationVariant: [{sortOrder: [{ by: 'StartDate', direction: #DESC }]}]
 annotate entity ZC_MB_FF_VACREQAPPROVER with
 {
 
+   /* Facets */
   @UI.facet:
-   [
-     { position: 10, type: #FIELDGROUP_REFERENCE, label: 'Details', targetQualifier: 'details' },
-     { position: 20, type: #FIELDGROUP_REFERENCE, label: 'Administrative Data', targetQualifier: 'admindata' }
-   ]
+  [
+    { position: 10, type: #FIELDGROUP_REFERENCE, label: 'Details', targetQualifier: 'details' },
+    { position: 20, type: #FIELDGROUP_REFERENCE, label: 'Administrative Data', targetQualifier: 'admindata' }
+  ]
+
+  /* Actions */
+  @UI.lineItem: [
+    { position: 10, type: #FOR_ACTION, dataAction: 'ApproveLeaveRequest', label: 'Approve' },
+    { position: 20, type: #FOR_ACTION, dataAction: 'DeclineVacationRequest', label: 'Decline' }
+  ]
+  @UI.identification: [
+    { position: 10, type: #FOR_ACTION, dataAction: 'ApproveLeaveRequest', label: 'Approve' },
+    { position: 20, type: #FOR_ACTION, dataAction: 'DeclineVacationRequest', label: 'Decline' }
+  ]
   @UI.hidden: true
   VacationreqUuid;
-
-  @EndUserText: { label: 'Applicant', quickInfo: 'Full Name of Applicant' }
-  @UI.fieldGroup: [{ position: 80, qualifier: 'details' }]
-  @UI.lineItem: [{ position: 5 }]
-  Applicant;
+  
+  
   @EndUserText: { label: 'Approver', quickInfo: 'Full Name of Approver'}
   @UI.selectionField: [{ position: 10 }]
   @UI.lineItem: [{ position: 60 }]
   @UI.fieldGroup: [{ position: 70, qualifier: 'details' }]
   Approver;
+
+  @EndUserText: { label: 'Applicant', quickInfo: 'Full Name of Applicant' }
+  @UI.fieldGroup: [{ position: 80, qualifier: 'details' }]
+  @UI.lineItem: [{ position: 5 }]
+  Applicant;
+
   @UI.lineItem: [{ position: 10, criticality: 'BeginDateCriticality', criticalityRepresentation: #WITHOUT_ICON}]
   @UI.fieldGroup: [{ position: 10, qualifier: 'details' }]
   StartDate;
+
   @UI.lineItem: [{ position: 20 }]
   @UI.fieldGroup: [{ position: 20, qualifier: 'details' }]
   EndDate;
+
+  @EndUserText: { label: 'Required Vacation Days', quickInfo: 'Required Vacation Days' }
+  @UI.lineItem: [{ position: 50 }]
+  @UI.fieldGroup: [{ position: 60, qualifier: 'details' }]
+  VacationDays;
+
+  @UI.hidden: true
+  Status;
+
+  @EndUserText: { label: 'State', quickInfo: 'Status of Vacation Request' }
+  @UI.selectionField: [{ position: 20 }]
+  @UI.lineItem: [{ position: 30, criticality: 'StatusCriticality', criticalityRepresentation: #WITH_ICON }]
+  @UI.dataPoint: { description: 'Status of Vacation Request', title: 'Status', targetValueElement: 'StatusDescription', criticality: 'StatusCriticality' }
+  @UI.fieldGroup: [{ position: 30, qualifier: 'details' }]
+  StatusDescription;
+
   @UI.lineItem: [{ position: 40 }]
   @UI.fieldGroup: [{ position: 40, qualifier: 'details' }]
   CommentVreq;
-  @UI.hidden: true
 
-  Status;
-  @UI.fieldGroup: [{ position: 10, qualifier: 'admindata' }]
+  @EndUserText: { label: 'Approver', quickInfo: 'Full Name of Approver' }
+  @UI.lineItem: [{ hidden: true }]
+  @UI.dataPoint: { description: 'Full Name of Approver', title: 'Approver', targetValueElement: 'ApproverFullName' }
+  ApproverFullName;
 
-  createdBy;
-  @UI.fieldGroup: [{ position: 20, qualifier: 'admindata' }]
+  @EndUserText: { label: 'Applicant', quickInfo: 'Full Name of Applicant' }
+  @UI.lineItem: [{ hidden: true }]
+  @UI.dataPoint: { description: 'Full Name of Applicant', title: 'Applicant', targetValueElement: 'ApplicantFullName' }
+  ApplicantFullName;
 
-  createdAt;
-  @UI.fieldGroup: [{ position: 30, qualifier: 'admindata' }]
-
-  lastChangedBy;
-  @UI.fieldGroup: [{ position: 40, qualifier: 'admindata' }]
-
-  lastChangedAt;
-
-  @UI.hidden: true
-
-  ApproverName;
-  @UI.hidden: true
-
-  StatusText;
   @UI.hidden: true
   BeginDateCriticality;
-  /* Associations */
 
-}
+  @UI.hidden: true
+  StatusCriticality;
+
+  /* Admin Data */
+  @UI.fieldGroup: [{ position: 10, qualifier: 'admindata' }]
+  createdBy;
+  @UI.fieldGroup: [{ position: 20, qualifier: 'admindata' }]
+  createdAt;
+  @UI.fieldGroup: [{ position: 30, qualifier: 'admindata' }]
+  lastChangedBy;
+  @UI.fieldGroup: [{ position: 40, qualifier: 'admindata' }]
+  lastChangedAt;
+
+  
+ }

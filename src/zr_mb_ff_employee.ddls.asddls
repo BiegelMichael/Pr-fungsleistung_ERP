@@ -4,6 +4,7 @@ define root view entity ZR_MB_FF_EMPLOYEE
   as select from zmbff_employee
   composition [0..*] of ZR_MBFF_VACATIONREQUEST        as _VacationRequests
   composition [0..*] of ZR_MB_FF_VACENT                as _VacEnt
+  association [1..1] to ZI_MB_FF_APPROVERTEXT          as _ApproverTX  on $projection.EmployeeUuid = _ApproverTX.EmployeeUuid
   association [1..1] to ZI_MB_FF_AVAILABLEVACATIONDAYS as _AvailableVD on $projection.EmployeeUuid = _AvailableVD.EmployeeUuid
   association [1..1] to ZI_MB_FF_PLANNEDVACATIONDAYS   as _PlannedVD   on $projection.EmployeeUuid = _PlannedVD.EmployeeUuid
   association [1..1] to ZI_MB_FF_CONSUMEDVACATIONDAYS  as _ConsumedVD  on $projection.EmployeeUuid = _ConsumedVD.EmployeeUuid
@@ -32,6 +33,7 @@ define root view entity ZR_MB_FF_EMPLOYEE
       _VacEnt,
 
       // Transient Data
+      _ApproverTX.ApproverName           as ApproverName,
       _AvailableVD.AvailableVacationDays as AvailableVacationDays,
       _ConsumedVD.ConsumedVacationDays   as ConsumedVacationDays,
       _PlannedVD.PlannedVacationDays     as PlannedVacationDays,

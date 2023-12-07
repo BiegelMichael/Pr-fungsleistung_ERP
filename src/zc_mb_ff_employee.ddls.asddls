@@ -16,6 +16,7 @@ define root view entity ZC_MB_FF_EMPLOYEE
       @Search.defaultSearchElement: true
       @Search.fuzzinessThreshold: 0.7
       Surname,
+      ApproverName,
       EntryDate,
 
       AvailableVacationDays,

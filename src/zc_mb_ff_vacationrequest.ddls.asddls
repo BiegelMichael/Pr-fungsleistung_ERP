@@ -13,17 +13,21 @@ define view entity ZC_MB_FF_VACATIONREQUEST
       StartDate,
       EndDate,
       CommentVreq,
-      @Consumption.valueHelpDefinition: [{ entity: { name: 'ZI_MB_FF_STATUSVH', element: 'Status' }}]
       Status,
+      ApplicantFullName,
+      ApproverFullName,
       createdBy,
       createdAt,
       lastChangedBy,
       lastChangedAt,
-      /* Associations */
-      ApproverName,
-      BeginDateCriticality,
       VacationDays,
-      //StatusText,
+      @Consumption.valueHelpDefinition: [{ entity: { name: 'ZI_MB_FF_STATUSVH', element: 'StatusDescription' }}]
+      StatusDescription,
+      
+      
+      BeginDateCriticality,
+      StatusCriticality,
+      
 
 
       _Employee : redirected to parent ZC_MB_FF_EMPLOYEE,

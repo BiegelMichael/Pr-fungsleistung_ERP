@@ -9,6 +9,9 @@ define behavior for ZC_MB_FF_EMPLOYEEAPPROVER //alias <alias_name>
 define behavior for ZC_MB_FF_VACREQAPPROVER //alias <alias_name>
 {
 
+  use action DeclineVacationRequest;
+  use action ApproveLeaveRequest;
+
   use association _Approver;
   use association _Employee;
 }

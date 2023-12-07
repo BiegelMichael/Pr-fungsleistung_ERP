@@ -1,57 +1,45 @@
 @Metadata.layer: #CUSTOMER
 @UI.headerInfo: // bezieht sich auf alles
-{ 
+{
 typeNamePlural: 'Employees',
-title.value: 'EmployeeId'
+title.value: 'ApproverName'
 }
-annotate entity ZC_MB_FF_EMPLOYEE
-    with 
+annotate entity ZC_MB_FF_EMPLOYEE with
 {
 
-/*Facets*/
-@UI.facet: 
-[
-    { position: 10, type: #FIELDGROUP_REFERENCE, label: 'Employee Details', targetQualifier: 'EmployeeDetails'},
-    { position: 20, type: #FIELDGROUP_REFERENCE, label: 'Administrative Data', targetQualifier: 'AdminData'},
-    { position: 30, targetElement: '_VacationRequests', label: 'Vacation Request Data', type: #LINEITEM_REFERENCE },
-    { position: 40, targetElement: '_VacEnt', label: 'Vacation Entitlement Data', type: #LINEITEM_REFERENCE }
-]
+  /*Facets*/
+  @UI.facet:
+  [
+      { position: 10, type: #FIELDGROUP_REFERENCE, label: 'Employee Details', targetQualifier: 'EmployeeDetails'},
+      { position: 20, type: #FIELDGROUP_REFERENCE, label: 'Administrative Data', targetQualifier: 'AdminData'},
+      { position: 30, targetElement: '_VacationRequests', label: 'Vacation Request Data', type: #LINEITEM_REFERENCE },
+      { position: 40, targetElement: '_VacEnt', label: 'Vacation Entitlement Data', type: #LINEITEM_REFERENCE }
+  ]
 
+  @UI.identification: [
+    { position: 10, type: #FOR_ACTION, dataAction: 'Refresh', label: 'Refresh' }
+  ]
 
 /*Fields */
-@UI.fieldGroup: [{ position : 10, qualifier: 'AdminData' }]
-EmployeeUuid;
 
-@UI.fieldGroup: [{ position : 20, qualifier: 'AdminData' }]
-createdBy;
+  @UI.lineItem: [{ position: 10 }]
+  @UI.selectionField: [{ position: 10 }]
+  @UI.fieldGroup: [{ position : 10, qualifier: 'EmployeeDetails' }]
+  EmployeeId;
+  @UI.lineItem: [{ position: 20 }]
+  @UI.selectionField: [{ position: 20 }]
+  @UI.fieldGroup: [{ position : 20, qualifier: 'EmployeeDetails' }]
+  FirstName;
+  @UI.lineItem: [{ position: 30 }]
+  @UI.selectionField: [{ position: 30 }]
+  @UI.fieldGroup: [{ position : 30, qualifier: 'EmployeeDetails' }]
+  Surname;
+  @UI.lineItem: [{ position: 40 }]
+  @UI.selectionField: [{ position: 40 }]
+  @UI.fieldGroup: [{ position : 40, qualifier: 'EmployeeDetails' }]
+  EntryDate;
 
-@UI.fieldGroup: [{ position : 30, qualifier: 'AdminData' }]
-createdAt;
-
-@UI.fieldGroup: [{ position : 40, qualifier: 'AdminData' }]
-lastChanged;
-
-@UI.fieldGroup: [{ position : 50, qualifier: 'AdminData' }]
-lastChangedAt;
-
-@UI.lineItem: [{ position: 10 }]
-@UI.selectionField: [{ position: 10 }] 
-@UI.fieldGroup: [{ position : 10, qualifier: 'EmployeeDetails' }]
-EmployeeId;
-@UI.lineItem: [{ position: 20 }] 
-@UI.selectionField: [{ position: 20 }]
-@UI.fieldGroup: [{ position : 20, qualifier: 'EmployeeDetails' }]
-FirstName;
-@UI.lineItem: [{ position: 30 }] 
-@UI.selectionField: [{ position: 30 }]
-@UI.fieldGroup: [{ position : 30, qualifier: 'EmployeeDetails' }]
-Surname;
-@UI.lineItem: [{ position: 40 }] 
-@UI.selectionField: [{ position: 40 }]
-@UI.fieldGroup: [{ position : 40, qualifier: 'EmployeeDetails' }]
-EntryDate;
-
-@EndUserText: { label: 'Available Vacation Days', quickInfo: 'Availavle Vacation Days'}
+  @EndUserText: { label: 'Available Vacation Days', quickInfo: 'Availavle Vacation Days'}
   @UI.lineItem: [{ position: 50, criticality: 'AvailableVDaysCriticality', criticalityRepresentation: #WITHOUT_ICON }]
   @UI.dataPoint: { description: 'Available Vacation Days', title: 'Available Vacation Days', targetValueElement: 'AvailableVacationDays', criticality: 'AvailableVDaysCriticality' }
   AvailableVacationDays;
@@ -73,6 +61,26 @@ EntryDate;
   @UI.hidden: true
   PlannedVDaysCriticality;
 
+  @UI.hidden: true
+  ApproverName;
 
-    
+
+  @UI.fieldGroup: [{ position : 10, qualifier: 'AdminData' }]
+  EmployeeUuid;
+
+  @UI.fieldGroup: [{ position : 20, qualifier: 'AdminData' }]
+  createdBy;
+
+  @UI.fieldGroup: [{ position : 30, qualifier: 'AdminData' }]
+  createdAt;
+
+  @UI.fieldGroup: [{ position : 40, qualifier: 'AdminData' }]
+  lastChanged;
+
+  @UI.fieldGroup: [{ position : 50, qualifier: 'AdminData' }]
+  lastChangedAt;
+
+
+
+
 }
